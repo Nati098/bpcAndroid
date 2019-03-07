@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">App1</string>
+    <string name="type_your_message_here">Введите сообщение...</string>
+    <string name="preview">ПРЕДПРОСМОТР</string>
+    <string name="exercise_1">Exercise 1</string>
+    <string name="exercise_2">Exercise 1</string>
+    <string name="textview">Просмотр текста</string>
+    <string name="email">ОТПРАВИТЬ</string>
+</resources>
