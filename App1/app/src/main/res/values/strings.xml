@@ -1,9 +1,9 @@
 <resources>
-    <string name="app_name">App1</string>
-    <string name="type_your_message_here">Type your message here...</string>
-    <string name="preview">PREVIEW</string>
+    <string name="app_name">Exercise 1</string>
     <string name="exercise_1">Exercise 1</string>
+    <string name="type_hint">Type your message here</string>
+    <string name="preview">PREVIEW</string>
+    <string name="textview">Textview</string>
     <string name="exercise_2">Exercise 1</string>
-    <string name="textview">TextView</string>
     <string name="email">EMAIL</string>
 </resources>

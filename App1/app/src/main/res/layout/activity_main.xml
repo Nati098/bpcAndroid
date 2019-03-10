@@ -23,32 +23,14 @@
         android:id="@+id/editText1"
         android:layout_width="411dp"
         android:layout_height="167dp"
-        android:layout_marginTop="3dp"
+        android:layout_marginTop="24dp"
         android:ems="10"
-        android:hint="@string/type_your_message_here"
+        android:hint="@string/type_hint"
         android:inputType="textMultiLine"
         app:layout_constraintBottom_toTopOf="@+id/button1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="414dp"
-        android:layout_height="64dp"
-        android:layout_marginBottom="5dp"
-        android:background="@color/colorPrimaryDark"
-        android:paddingStart="12dp"
-        android:paddingTop="20dp"
-        android:paddingEnd="50dp"
-        android:paddingBottom="20dp"
-        android:text="@string/exercise_1"
-        android:textAlignment="textStart"
-        android:textColor="@android:color/background_light"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/editText1"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 </android.support.constraint.ConstraintLayout>
