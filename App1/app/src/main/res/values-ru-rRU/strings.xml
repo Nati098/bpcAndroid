@@ -7,4 +7,5 @@
     <string name="textview">Просмотр</string>
     <string name="exercise_2">Задание 1</string>
     <string name="email">ОТПРАВИТЬ</string>
+    <string name="email_error">Отсутствует приложение</string>
 </resources>

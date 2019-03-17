@@ -7,4 +7,5 @@
     <string name="textview">Textview</string>
     <string name="exercise_2">Exercise 1</string>
     <string name="email">EMAIL</string>
+    <string name="email_error">Can\'t find Email app</string>
 </resources>

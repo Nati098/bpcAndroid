@@ -14,7 +14,6 @@ import android.widget.Toast;
 public class ViewActivity extends AppCompatActivity {
 
     public static final String MSG_LABEL = "msg";
-    public static final String EMAIL_ERROR_LABEL = "Can't find Email app";
 
     private Button button1;
     private TextView textObject1;
@@ -49,7 +48,7 @@ public class ViewActivity extends AppCompatActivity {
         Intent intent1 = new Intent(Intent.ACTION_SEND);
         if (intent1.resolveActivity(getPackageManager()) == null){
             button1.setEnabled(false);
-            Toast.makeText(getApplicationContext(), EMAIL_ERROR_LABEL, Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), R.string.email_error, Toast.LENGTH_LONG).show();
         }
         else{
             intent1.setData(Uri.parse("mailto:"));
