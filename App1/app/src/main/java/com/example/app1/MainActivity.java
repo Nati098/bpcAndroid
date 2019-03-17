@@ -8,28 +8,26 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-
-    private Button button1;
-    private EditText editText1;
+public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
 
-        button1 = (Button) findViewById(R.id.button1);
-        button1.setOnClickListener(this);
+        Button button1 = findViewById(R.id.button1);
+        button1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toViewActivity();
+            }
+        });
 
-        editText1 = (EditText) findViewById(R.id.editText1);
-        //editText1.setListener
     }
 
-    @Override
-    public void onClick(View v) {
-        Intent intent1 = new Intent(this, ViewActivity.class);
-        intent1.putExtra("msg", editText1.getText().toString());
-        startActivity(intent1);
+    private void toViewActivity(){
+        EditText editText1 = findViewById(R.id.editText1);
+        ViewActivity.start(this, editText1.getText().toString());
     }
+
 }
