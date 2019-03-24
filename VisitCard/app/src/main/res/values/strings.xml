@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Visit Card</string>
+    <string name="enter_hint">Enter a message</string>
+    <string name="button_text">SEND MESSAGE</string>
+
+    <string name="email_error">Can\'t find Email app</string>
+    <string name="browser_error">Can\'t open a link</string>
+
+    <string name="fio">Bogatyreva Anastasia</string>
+    <string name="char1">NRNU MEPhI student</string>
+    <string name="char2">Mason... a little bit</string>
+    <string name="description">I like coffee! For this moment there is a 1 liter of this perfect drink inside of me.
+        Coffee was yummy, but it is a little volume. And, unfortunately, it cannot add at least 1 hour to 24 ones.
+        So, now I\'m going to buy a liter more and continue writing a code.\n
+        E = mc^2\n
+        Energy = milk * coffee * coffee</string>
+    <string name="signature">“© 2019 Anastasia”</string>
+</resources>

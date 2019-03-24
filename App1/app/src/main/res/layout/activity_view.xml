@@ -28,6 +28,7 @@
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
             android:hint="@string/textview"
+            android:paddingTop="48dp"
             android:textAlignment="center"
             android:textSize="18sp"
             tools:layout_editor_absoluteX="1dp"

@@ -16,7 +16,6 @@ public class ViewActivity extends AppCompatActivity {
     public static final String MSG_LABEL = "msg";
 
     private Button button1;
-    private TextView textObject1;
     private String msg;
 
     public static void start(Activity activity, String msg){
@@ -30,12 +29,12 @@ public class ViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view);
 
-        msg = getIntent().getStringExtra(MSG_LABEL);
-        textObject1 = findViewById(R.id.textView2);
-        textObject1.setText(msg);  //getExtras().getString("msg")
+        this.msg = getIntent().getStringExtra(MSG_LABEL);
+        TextView textObject2 = findViewById(R.id.textView2);
+        textObject2.setText(this.msg);  //getExtras().getString("msg")
 
-        button1 = findViewById(R.id.button1);
-        button1.setOnClickListener(new View.OnClickListener() {
+        this.button1 = findViewById(R.id.button1);
+        this.button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 toEmailActivity();
@@ -47,7 +46,7 @@ public class ViewActivity extends AppCompatActivity {
     private void toEmailActivity() {
         Intent intent1 = new Intent(Intent.ACTION_SEND);
         if (intent1.resolveActivity(getPackageManager()) == null){
-            button1.setEnabled(false);
+            this.button1.setEnabled(false);
             Toast.makeText(getApplicationContext(), R.string.email_error, Toast.LENGTH_LONG).show();
         }
         else{
