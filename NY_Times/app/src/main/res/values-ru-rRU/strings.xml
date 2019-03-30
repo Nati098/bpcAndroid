@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Визитка</string>
+    <string name="enter_hint">Введите сообщение</string>
+    <string name="button_text">ОТПРАВИТЬ</string>
+
+    <string name="email_error">Отсутствует почтовое приложение</string>
+    <string name="browser_error">Невозможно открыть ссылку</string>
+
+    <string name="app_title">NY Times</string>
+    <string name="char1">Студент НИЯУ МИФИ</string>
+    <string name="char2">Немножко масон</string>
+    <string name="description">Обожаю кофе! Сейчас внутри меня 1 литр этого прекрасного напитка богов.
+        Кофе был вкусным, но этого недостаточно. И, к сожалению, он не может прибавить еще хотя бы 1 час к суткам.
+        Так что, сейчас я куплю еще немного и продолжу кодить.\n
+        E = mc^2\n
+        Energy = milk * coffee * coffee</string>
+    <string name="signature">“© 2019 Anastasia”</string>
+</resources>
