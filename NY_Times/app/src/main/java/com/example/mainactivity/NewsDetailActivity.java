@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
+import androidx.appcompat.widget.Toolbar;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
@@ -31,8 +33,9 @@ public class NewsDetailActivity extends AppCompatActivity {
         Glide.with(this).load(getIntent().getStringExtra("img_url"))
                 .into((ImageView) findViewById(R.id.news_details_photo));
 
-        TextView toolbar = findViewById(R.id.news_details_toolbar);
-        toolbar.setText(getIntent().getStringExtra("category"));
+        Toolbar toolbar = findViewById(R.id.news_details_toolbar);
+        TextView toolTitle = (TextView) toolbar.findViewById(R.id.news_details_toolbar_title);
+        toolTitle.setText(getIntent().getStringExtra("category"));
 
         TextView title = findViewById(R.id.news_details_title);
         title.setText(getIntent().getStringExtra("title"));

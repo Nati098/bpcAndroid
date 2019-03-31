@@ -20,7 +20,7 @@ public class NewsListActivity extends AppCompatActivity {
                 new NewsItemClickedCallback() {
                     @Override
                     public void onItemClicked(NewsItem item) {
-                        NewsDetailActivity.start(NewsListActivity.this, item.getCategory().toString(),
+                        NewsDetailActivity.start(NewsListActivity.this, item.getCategory().getName(),
                                 item.getImageUrl(), item.getTitle(), item.getPublishDate().toString(), item.getFullText());
                     }
                 }));
