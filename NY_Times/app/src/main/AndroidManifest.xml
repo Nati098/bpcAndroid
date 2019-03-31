@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".NewsDetailActivity"></activity>
-        <activity android:name=".AboutActivity" />
+        <activity android:name=".AboutActivity"></activity>
         <activity android:name=".NewsListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
