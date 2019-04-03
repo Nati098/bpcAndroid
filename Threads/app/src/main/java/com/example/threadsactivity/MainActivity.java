@@ -96,34 +96,3 @@ public class MainActivity extends AppCompatActivity {
 
     }
 }
-
-
-/*
-public class MyThread extends Thread {
-
-    static Lock lock = new ReentrantLock();
-    private String strVoice;
-
-    private void setVoice(String str) {
-        this.strVoice = str;
-    }
-
-    MyThread(String str) {
-        this.setVoice(str);
-    }
-
-    @Override
-    public void run() {
-        for (;;) { // бесконечные цикл
-            System.out.println(this.strVoice);
-            try {
-                MyThread.sleep(1000);// чтобы спорили медленнее
-            } catch (InterruptedException ex) {
-                // Logger.getLogger(ChickenVoice.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            lock.lock();
-            lock.unlock();
-        }
-    }
-}
- */
