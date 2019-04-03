@@ -9,6 +9,8 @@ import java.util.concurrent.locks.ReentrantLock;
 
 
 public class MainActivity extends AppCompatActivity {
+    private LeftLeg t1;
+    private RightLeg t2;
 
     private class LeftLeg implements Runnable {
         private boolean isRunning = true;
@@ -32,6 +34,10 @@ public class MainActivity extends AppCompatActivity {
                 } catch (InterruptedException ex) {}
 
             }
+        }
+
+        public void setIsRunning(boolean state){
+            this.isRunning = state;
         }
     }
 
@@ -58,6 +64,10 @@ public class MainActivity extends AppCompatActivity {
 
             }
         }
+
+        public void setIsRunning(boolean state){
+            this.isRunning = state;
+        }
     }
 
     @Override
@@ -71,8 +81,18 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
 
         ReentrantLock lock = new ReentrantLock();
-        new Thread(new LeftLeg(lock)).start();
-        new Thread(new RightLeg(lock)).start();
+        this.t1 = new LeftLeg(lock);
+        this.t2 = new RightLeg(lock);
+        new Thread(t1).start();
+        new Thread(t2).start();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        t1.setIsRunning(false);
+        t2.setIsRunning(false);
 
     }
 }
