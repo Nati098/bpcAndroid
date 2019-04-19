@@ -8,6 +8,8 @@ import java.util.List;
 public class DataUtils {
 
     public static List<NewsItem> generateNews() {
+        System.out.println("\n\n"+Thread.currentThread().getName() + ": generate news...\n\n");
+
         final Category darwinAwards = new Category(1, "Darwin Awards");
         final Category criminal = new Category(2, "Criminal");
         final Category animals = new Category(3, "Animals");
