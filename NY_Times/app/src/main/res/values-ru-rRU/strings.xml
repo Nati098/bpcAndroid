@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Визитка</string>
+    <string name="app_name">NY Times</string>
     <string name="enter_hint">Введите сообщение</string>
     <string name="button_text">ОТПРАВИТЬ</string>
 
@@ -23,4 +23,9 @@
 В этой подборке много рассказов о любви и столь близкой к ней темы смерти, смысла жизни и душевном проживании каждого ее момента. Тему смерти зачастую стараются обходить стороной, а в нескольких коротких рассказах на этой странице она показана с такой оригинальной стороны, что дает возможность понять ее совсем по-новому, а значит и начать жить по-другому.
 
 Приятного чтения и интересных душевных впечатлений!</string>
+
+    <string name="error_empty_data_text">Данные не найдены</string>
+    <string name="error_server_text">Ошибка сервера</string>
+    <string name="error_network_text">Ошибка! Пожалуйста, пороверьте интернет-соединение и попробуйте снова</string>
+    <string name="button_try_again_text">Повторить попытку</string>
 </resources>

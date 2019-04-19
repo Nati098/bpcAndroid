@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -18,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
 
 public class NewsRecyclerAdapter extends RecyclerView.Adapter<NewsRecyclerAdapter.ViewHolder> {
@@ -26,14 +28,12 @@ public class NewsRecyclerAdapter extends RecyclerView.Adapter<NewsRecyclerAdapte
     private Context context;
     private LayoutInflater inflater;
     private final NewsItemClickedCallback itemClickedCallback;
-    //private Disposable disposable;
 
     public NewsRecyclerAdapter(Context context, List<NewsItem> newsItems, NewsItemClickedCallback callback){
         this.context = context;
         this.newsItems = newsItems;
         this.inflater = LayoutInflater.from(context);
         this.itemClickedCallback = callback;
-        //this.disposable = Observable.fromArray(newsItems).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
 
     }
 
@@ -47,14 +47,7 @@ public class NewsRecyclerAdapter extends RecyclerView.Adapter<NewsRecyclerAdapte
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-
         holder.bind(this.context, this.newsItems.get(position));
-        /*this.disposable = Observable.just(this.newsItems.get(position))
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(item -> holder.bind(this.context, item));
-                */
-
     }
 
     public NewsItem getItem(int position) {
@@ -71,10 +64,6 @@ public class NewsRecyclerAdapter extends RecyclerView.Adapter<NewsRecyclerAdapte
         return this.newsItems.size();
     }
 
-    /*
-    public void onStop(){
-        this.disposable.dispose();
-    }*/
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
         private final ImageView photo;
@@ -82,6 +71,8 @@ public class NewsRecyclerAdapter extends RecyclerView.Adapter<NewsRecyclerAdapte
         public final TextView title;
         public final TextView preview;
         public final TextView publishDdate;
+
+        ProgressBar progressBar;
 
         private NewsItem item;
 
@@ -92,8 +83,7 @@ public class NewsRecyclerAdapter extends RecyclerView.Adapter<NewsRecyclerAdapte
             this.title = itemView.findViewById(R.id.title_text);
             this.preview = itemView.findViewById(R.id.preview_text);
             this.publishDdate = itemView.findViewById(R.id.date_text);
-
-
+            this.progressBar = itemView.findViewById(R.id.news_item_progress);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -105,18 +95,24 @@ public class NewsRecyclerAdapter extends RecyclerView.Adapter<NewsRecyclerAdapte
 
         // binds the view holder to its data; replace the contents of a view
         public void bind(Context context, NewsItem item){
+            this.progressBar.setVisibility(View.VISIBLE);
 
-             Disposable disposable = Observable.just(item)
-                    .map(it -> {
-                        System.out.println("Loading picture: " + Thread.currentThread().getName());
-                        return Glide.with(context).load(it.getImageUrl());
-                    })
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(drb -> {
-                        System.out.println("Current thread " + Thread.currentThread().getName());
-                        drb.into(ViewHolder.this.photo);
-                    });
+            Observable.just(item.getImageUrl()).subscribe(new DisposableObserver<String>() {
+                @Override
+                public void onNext(String url) {
+                    Glide.with(context).load(url).into(ViewHolder.this.photo);
+                }
+
+                @Override
+                public void onError(Throwable e) {
+                    System.err.println("Fail to load image from URL (Holder, bind)");
+                }
+
+                @Override
+                public void onComplete() {
+                    progressBar.setVisibility(View.GONE);
+                }
+            });
 
 
             this.category.setText(item.getCategory().getName());

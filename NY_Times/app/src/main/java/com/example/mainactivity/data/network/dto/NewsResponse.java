@@ -6,10 +6,10 @@ import androidx.annotation.Nullable;
 
 public class NewsResponse<T> {
 
-    private List<T> results;
+    private T results;
 
     @Nullable
-    public List<T> getResults(){
+    public T getResults(){
         return this.results;
     }
 
