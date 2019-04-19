@@ -1,4 +1,4 @@
-package com.example.mainactivity;
+package com.example.mainactivity.data.local;
 
 public class Category {
     private final int id;
