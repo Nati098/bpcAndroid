@@ -2,6 +2,8 @@ package com.example.mainactivity;
 
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import java.util.List;
 
@@ -18,14 +20,17 @@ import io.reactivex.schedulers.Schedulers;
 public class NewsListActivity extends AppCompatActivity {
 
     private Disposable disposable;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news_list);
 
-        final List<NewsItem> newsItems;
+        this.progressBar = findViewById(R.id.progressBarList);
+        this.progressBar.setVisibility(View.VISIBLE);
 
+        //final List<NewsItem> newsItems;
         this.disposable = Single.just(new DataUtils()).map(du -> {
             Thread.sleep(2000);
             return du.generateNews();})
@@ -37,6 +42,7 @@ public class NewsListActivity extends AppCompatActivity {
     }
 
     private void runRecyclerView(List<NewsItem> newsItems){
+        this.progressBar.setVisibility(View.GONE);
         System.out.println("\n\nNow it's a " + Thread.currentThread().getName()+"\n\n");
 
         RecyclerView rv = findViewById(R.id.news_recycler_view);

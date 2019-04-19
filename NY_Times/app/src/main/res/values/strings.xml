@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Visit Card</string>
+    <string name="app_name">NY Times</string>
     <string name="enter_hint">Enter a message</string>
     <string name="button_text">SEND MESSAGE</string>
 

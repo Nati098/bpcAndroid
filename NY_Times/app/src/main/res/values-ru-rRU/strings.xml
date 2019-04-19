@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Визитка</string>
+    <string name="app_name">NY Times</string>
     <string name="enter_hint">Введите сообщение</string>
     <string name="button_text">ОТПРАВИТЬ</string>
 
