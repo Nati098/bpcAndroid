@@ -2,6 +2,7 @@ package com.example.mainactivity;
 
 import android.content.Context;
 
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,11 +11,16 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
 import com.example.mainactivity.data.local.NewsItem;
 
 import java.util.List;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -96,24 +102,22 @@ public class NewsRecyclerAdapter extends RecyclerView.Adapter<NewsRecyclerAdapte
         // binds the view holder to its data; replace the contents of a view
         public void bind(Context context, NewsItem item){
             this.progressBar.setVisibility(View.VISIBLE);
+            Glide.with(context).load(item.getImageUrl())
+                    .listener(new RequestListener<Drawable>() {
+                        @Override
+                        public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                            progressBar.setVisibility(View.GONE);
+                            System.err.println("Fail to load image: ViewHolder, bind");
+                            return false;
+                        }
 
-            Observable.just(item.getImageUrl()).subscribe(new DisposableObserver<String>() {
-                @Override
-                public void onNext(String url) {
-                    Glide.with(context).load(url).into(ViewHolder.this.photo);
-                }
-
-                @Override
-                public void onError(Throwable e) {
-                    System.err.println("Fail to load image from URL (Holder, bind)");
-                }
-
-                @Override
-                public void onComplete() {
-                    progressBar.setVisibility(View.GONE);
-                }
-            });
-
+                        @Override
+                        public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                            progressBar.setVisibility(View.GONE);
+                            return false;
+                        }
+                    })
+                    .into(ViewHolder.this.photo);
 
             this.category.setText(item.getCategory().getName());
             this.title.setText(item.getTitle());
