@@ -19,7 +19,7 @@ public class NewsDetailActivity extends AppCompatActivity {
         intent1.putExtra("title", title);
         intent1.putExtra("date", publishDdate);
         intent1.putExtra("full_text", full_text);
-        intent1.putExtra("category", category);
+        intent1.putExtra("subsection", category);
 
         activity.startActivity(intent1);
     }
@@ -35,7 +35,7 @@ public class NewsDetailActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.news_details_toolbar);
         TextView toolTitle = (TextView) toolbar.findViewById(R.id.news_details_toolbar_title);
-        toolTitle.setText(getIntent().getStringExtra("category"));
+        toolTitle.setText(getIntent().getStringExtra("subsection"));
 
         TextView title = findViewById(R.id.news_details_title);
         title.setText(getIntent().getStringExtra("title"));

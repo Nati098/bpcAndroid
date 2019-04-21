@@ -10,7 +10,7 @@ public class NewsDTO {
     private String section;
 
     @SerializedName("subsection")
-    public String subsection;
+    private String subsection;
 
     @SerializedName("title")
     private String title;
@@ -29,6 +29,23 @@ public class NewsDTO {
 
     @SerializedName("multimedia")
     private List<MultimediaDTO> multimedia;
+
+
+    public String getSubsection() {
+        return this.subsection;
+    }
+
+    public String getTitle() {
+        return this.title;
+    }
+
+    public String getAbstract() {
+        return this._abstract;
+    }
+
+    public String getPublishedDate() {
+        return this.publishedDate;
+    }
 
     public String getUrl() {
         return this.multimedia.get(2).getUrl();

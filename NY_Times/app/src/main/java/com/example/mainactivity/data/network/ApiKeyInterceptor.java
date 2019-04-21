@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.logging.Logger;
 
 import io.reactivex.annotations.NonNull;
+import okhttp3.Headers;
 import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
 import okhttp3.Request;
@@ -29,16 +30,22 @@ public class ApiKeyInterceptor implements Interceptor {
 
     @Override
     public Response intercept(@NonNull Chain chain) throws IOException {
+        //System.out.println("IN INTERCEPT");
         final Request requestNoKey = chain.request();
-
+        //System.out.println("AFTER requestNoKey "+ requestNoKey.url());
         final HttpUrl url = requestNoKey.url()
-                .newBuilder().setPathSegment(0, this.section)
-                .build();
+                .newBuilder().build();
+
+        //Headers headers = requestNoKey.headers().newBuilder().set(PARAM_API_KEY, this.apiKey).build();
+        //System.out.println("REQUEEEEEEEEEEEEEEEEST "+url.toString()+"  "+headers);
 
         final Request requestWithKey = requestNoKey.newBuilder()
                 .url(url)
-                .addHeader(PARAM_API_KEY, this.apiKey)
+                //.headers(headers)
+                .header(PARAM_API_KEY, this.apiKey)
                 .build();
+        System.out.println("AFTER requestWithKey headers "+requestWithKey.headers().toString());
+        //System.out.println("AFTER requestWithKey "+requestWithKey.body().toString());
 
         return chain.proceed(requestWithKey);
     }

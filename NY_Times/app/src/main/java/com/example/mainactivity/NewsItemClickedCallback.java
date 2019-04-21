@@ -1,7 +1,5 @@
 package com.example.mainactivity;
 
-import com.example.mainactivity.data.local.NewsItem;
-
-public interface NewsItemClickedCallback {
-    void onItemClicked(NewsItem item);
+public interface NewsItemClickedCallback<T> {
+    void onItemClicked(T item);
 }

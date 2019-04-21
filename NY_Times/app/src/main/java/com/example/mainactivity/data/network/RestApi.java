@@ -63,6 +63,6 @@ public class RestApi {
     }
 
     public NewsEndpoint getNewsEndpoint() {
-        return newsEndpoint;
+        return this.newsEndpoint;
     }
 }

@@ -33,8 +33,8 @@ import retrofit2.Response;
 public class NewsListActivity extends AppCompatActivity {
 
     public static final String DEFAULT_SEARCH_REQUEST = "home";
-    public static final String[] SECTIONS = { "arts", "automobiles", "books", "business", "fashion", "food", "health",
-            "home", "insider", "magazine", "movies", "national", "nyregion", "obituaries", "opinion", "politics", "realestate",
+    public static final String[] SECTIONS = {"home",  "arts", "automobiles", "books", "business", "fashion", "food", "health",
+            "insider", "magazine", "movies", "national", "nyregion", "obituaries", "opinion", "politics", "realestate",
             "science", "sports", "sundayreview", "technology", "theater", "tmagazine", "travel", "upshot", "world"};
 
     private NewsRecyclerAdapter adapter;
@@ -81,12 +81,11 @@ public class NewsListActivity extends AppCompatActivity {
         findViews();
         this.toolbar.setTitle(R.string.app_title);
 
-        setupRecyclerView(DataUtils.generateNews());
+        setupRecyclerView();
         setupSpinner();
     }
 
     private void findViews(){
-        // TODO - ?
         this.toolbar = findViewById(R.id.news_list_toolbar);
         this.spinner = findViewById(R.id.spinner);
         this.viewError = findViewById(R.id.frame_error);
@@ -96,13 +95,13 @@ public class NewsListActivity extends AppCompatActivity {
         this.viewNoData = findViewById(R.id.frame_no_data);
     }
 
-    private void setupRecyclerView(List<NewsItem> newsItems){
-        this.adapter = new NewsRecyclerAdapter(this,newsItems,
-                new NewsItemClickedCallback() {
+    private void setupRecyclerView(){
+        this.adapter = new NewsRecyclerAdapter(this,
+                new NewsItemClickedCallback<NewsDTO>() {
                     @Override
-                    public void onItemClicked(NewsItem item) {
-                        NewsDetailActivity.start(NewsListActivity.this, item.getCategory().getName(),
-                                item.getImageUrl(), item.getTitle(), item.getPublishDate().toString(), item.getFullText());
+                    public void onItemClicked(NewsDTO item) {
+                        NewsDetailActivity.start(NewsListActivity.this, item.getSubsection(),
+                                item.getUrl(), item.getTitle(), item.getPublishedDate(), item.getUrl());  // TODO - replae last geturl on getfulltext
                     }
                 });
 
@@ -117,7 +116,6 @@ public class NewsListActivity extends AppCompatActivity {
     }
 
     private void setupSpinner(){
-        // TODO - ?
         ArrayAdapter<String> adapterSpinner = new ArrayAdapter<>(NewsListActivity.this,
                 android.R.layout.simple_spinner_item, SECTIONS);
         this.spinner.setAdapter(adapterSpinner);
@@ -147,7 +145,7 @@ public class NewsListActivity extends AppCompatActivity {
     }
 
     private void onClickButtonRetry(){
-        // TODO
+        loadNews((String) this.spinner.getSelectedItem());
     }
 
     private void loadNews(@NonNull String section){
@@ -186,7 +184,7 @@ public class NewsListActivity extends AppCompatActivity {
         }
 
         // success
-        // TODO: replace item in adapter
+        this.adapter.replaceItems(data);
         showStateView(State.HasData);
 
     }

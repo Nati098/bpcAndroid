@@ -15,9 +15,10 @@ import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface NewsEndpoint {
-    //@Headers("Accept: application/json")
+    @Headers({"Accept: application/json",
+            "api-key: 0"})
     @GET("svc/topstories/v2/{section}.json")
     Single<Response<NewsResponse<List<NewsDTO>>>> search(@Path("section") String section);
-                                                        // @Header("api-key") @NonNull String apiKey);
+                                                         //@Header("api-key") @NonNull String apiKey);
 
 }
