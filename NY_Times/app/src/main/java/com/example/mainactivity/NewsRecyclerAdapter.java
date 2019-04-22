@@ -28,11 +28,11 @@ public class NewsRecyclerAdapter extends RecyclerView.Adapter<NewsRecyclerAdapte
 
     private Context context;
     private LayoutInflater inflater;
-    private final NewsItemClickedCallback itemClickedCallback;
+    private final NewsItemClickedCallback<NewsDTO> itemClickedCallback;
 
     private List<NewsDTO> newsItems = new ArrayList<>();
 
-    public NewsRecyclerAdapter(Context context, NewsItemClickedCallback callback){
+    public NewsRecyclerAdapter(Context context, NewsItemClickedCallback<NewsDTO> callback){
         this.context = context;
         this.inflater = LayoutInflater.from(context);
         this.itemClickedCallback = callback;

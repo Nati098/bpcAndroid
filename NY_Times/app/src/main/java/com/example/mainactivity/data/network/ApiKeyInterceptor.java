@@ -30,9 +30,7 @@ public class ApiKeyInterceptor implements Interceptor {
 
     @Override
     public Response intercept(@NonNull Chain chain) throws IOException {
-        //System.out.println("IN INTERCEPT");
         final Request requestNoKey = chain.request();
-        //System.out.println("AFTER requestNoKey "+ requestNoKey.url());
         final HttpUrl url = requestNoKey.url()
                 .newBuilder().build();
 
