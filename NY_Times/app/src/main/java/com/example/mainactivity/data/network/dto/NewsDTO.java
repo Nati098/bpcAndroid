@@ -21,9 +21,6 @@ public class NewsDTO {
     @SerializedName("url")
     private String url;
 
-    @SerializedName("item_type")
-    private String itemType;
-
     @SerializedName("published_date")
     private String publishedDate;
 

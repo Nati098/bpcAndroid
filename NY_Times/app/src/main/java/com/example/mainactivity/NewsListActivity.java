@@ -8,8 +8,9 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.mainactivity.data.local.DataUtils;
-import com.example.mainactivity.data.local.NewsItem;
+import com.example.mainactivity.data.NewsItemClickedCallback;
+import com.example.mainactivity.data.NewsRecyclerAdapter;
+import com.example.mainactivity.data.network.State;
 import com.example.mainactivity.data.network.RestApi;
 import com.example.mainactivity.data.network.dto.NewsDTO;
 import com.example.mainactivity.data.network.dto.NewsResponse;

@@ -1,4 +1,4 @@
-package com.example.mainactivity;
+package com.example.mainactivity.data.network;
 
 public enum State {
     HasData,    // success

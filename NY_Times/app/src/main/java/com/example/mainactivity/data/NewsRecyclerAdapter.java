@@ -1,4 +1,4 @@
-package com.example.mainactivity;
+package com.example.mainactivity.data;
 
 import android.content.Context;
 
@@ -15,6 +15,7 @@ import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
+import com.example.mainactivity.R;
 import com.example.mainactivity.data.network.dto.NewsDTO;
 
 import java.util.ArrayList;
