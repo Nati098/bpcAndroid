@@ -3,6 +3,8 @@
     <dimen name="margin">16dp</dimen>
     <dimen name="pic_size">28dp</dimen>
     <dimen name="text_size">16sp</dimen>
+    <dimen name="intro_head_text_size">32sp</dimen>
+    <dimen name="intro_subhead_text_size">24sp</dimen>
     <dimen name="list_item_news_height">108dp</dimen>
     <dimen name="list_item_padding">4dp</dimen>
     <dimen name="objects_list_margin">2dp</dimen>
@@ -11,4 +13,5 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="text_margin">16dp</dimen>
     <dimen name="detail_backdrop_height">256dp</dimen>
+    <dimen name="img_width_height">350dp</dimen>
 </resources>

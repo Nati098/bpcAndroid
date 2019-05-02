@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">NY Times</string>
+
+    <string name="intro_head_text">Добро пожаловать!</string>
+    <string name="intro_subhead_text">Узнавайте о топовых событиях в Мире!</string>
+    <string name="intro_btn_text">К ПРИЛОЖЕНИЮ!</string>
+
     <string name="enter_hint">Введите сообщение</string>
     <string name="button_text">ОТПРАВИТЬ</string>
 

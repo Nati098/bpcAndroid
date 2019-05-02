@@ -1,5 +1,10 @@
 <resources>
     <string name="app_name">NY Times</string>
+
+    <string name="intro_head_text">Welcome!</string>
+    <string name="intro_subhead_text">Learn topstories about the World!</string>
+    <string name="intro_btn_text">FINISH!</string>
+
     <string name="enter_hint">Enter a message</string>
     <string name="button_text">SEND MESSAGE</string>
 
