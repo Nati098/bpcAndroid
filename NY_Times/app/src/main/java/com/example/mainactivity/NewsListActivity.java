@@ -7,6 +7,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.mainactivity.data.NewsItemClickedCallback;
 import com.example.mainactivity.data.NewsRecyclerAdapter;
@@ -14,6 +15,7 @@ import com.example.mainactivity.data.network.State;
 import com.example.mainactivity.data.network.RestApi;
 import com.example.mainactivity.data.network.dto.NewsDTO;
 import com.example.mainactivity.data.network.dto.NewsResponse;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.io.IOException;
 import java.util.List;
@@ -43,6 +45,7 @@ public class NewsListActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
     private AppCompatSpinner spinner;
+    private FloatingActionButton buttonFA;
     private View viewError;
     private TextView textViewError;
     private Button buttonRetry;
@@ -89,6 +92,8 @@ public class NewsListActivity extends AppCompatActivity {
     private void findViews(){
         this.toolbar = findViewById(R.id.news_list_toolbar);
         this.spinner = findViewById(R.id.spinner);
+        this.buttonFA = findViewById(R.id.btn_fab);
+
         this.viewError = findViewById(R.id.frame_error);
         this.textViewError = findViewById(R.id.text_view_error);
         this.buttonRetry = findViewById(R.id.btn_try_again);
@@ -102,7 +107,7 @@ public class NewsListActivity extends AppCompatActivity {
                     @Override
                     public void onItemClicked(NewsDTO item) {
                         NewsDetailActivity.start(NewsListActivity.this, item.getSubsection(),
-                                item.getUrl(), item.getTitle(), item.getPublishedDate(), item.getUrl());  // TODO - replae last geturl on getfulltext
+                                item.getUrl(), item.getTitle(), item.getPublishedDate(), item.getUrl());  // TODO - replace last get_url on get_full_text
                     }
                 });
 
@@ -141,6 +146,18 @@ public class NewsListActivity extends AppCompatActivity {
             }
         });
 
+        this.buttonFA.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (spinner.getSelectedItem() != null) {
+                    String section = (String) spinner.getSelectedItem();
+                    loadNews(section);
+                }
+                else{
+                    Toast.makeText(getApplicationContext(), R.string.error_spinner_null, Toast.LENGTH_LONG).show();
+                }
+            }
+        });
 
         this.buttonRetry.setOnClickListener(evt -> onClickButtonRetry());
     }

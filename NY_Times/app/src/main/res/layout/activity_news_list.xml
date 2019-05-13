@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
-    <androidx.appcompat.widget.Toolbar
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <androidx.appcompat.widget.Toolbar
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/news_list_toolbar"
         android:layout_width="match_parent"
@@ -32,7 +37,7 @@
 
     </androidx.appcompat.widget.Toolbar>
 
-
+    </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.recyclerview.widget.RecyclerView
             xmlns:android="http://schemas.android.com/apk/res/android"
@@ -48,6 +53,15 @@
 
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
 
+        />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btn_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        android:src="@drawable/ic_my_update"
         />
 
     <FrameLayout
@@ -78,7 +92,6 @@
 
     </FrameLayout>
 
-
     <LinearLayout
         android:id="@+id/frame_error"
         android:layout_width="match_parent"
@@ -106,5 +119,5 @@
     </LinearLayout>
 
 
-</LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
 

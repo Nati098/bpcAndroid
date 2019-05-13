@@ -29,6 +29,8 @@
 
 Приятного чтения и интересных душевных впечатлений!</string>
 
+    <string name="error_spinner_null">Пожалуйста, выберите категорию!</string>
+
     <string name="error_empty_data_text">Данные не найдены</string>
     <string name="error_server_text">Ошибка сервера</string>
     <string name="error_network_text">Ошибка! Пожалуйста, пороверьте интернет-соединение и попробуйте снова</string>

@@ -27,6 +27,8 @@ The woman, slightly bothered, ate the cookies and watched the clock, while the y
 
 She had never met anybody so fresh and sighed relieved to hear her flight announced. She grabbed her bags and went towards the boarding gate refusing to look back to where that insolent thief was seated. After boarding the plane and nicely seated, she looked for her book which was nearly finished by now. While looking into her bag she was totally surprised to find her pack of biscuits nearly intact. If my biscuits are here, she thought feeling terribly, those others were his and he tried to share them with me. Too late to apologize to the young man, she realized with pain, that it was her who had been insolent, uneducated and a thief, and not him!</string>
 
+    <string name="error_spinner_null">Please, choose category!</string>
+
     <string name="error_empty_data_text">Data not found</string>
     <string name="error_server_text">Server error</string>
     <string name="error_network_text">Error! Please check your network connection and try again</string>

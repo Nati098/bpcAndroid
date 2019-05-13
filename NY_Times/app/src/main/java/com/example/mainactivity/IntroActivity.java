@@ -14,7 +14,7 @@ import android.widget.Button;
 
 import java.util.concurrent.TimeUnit;
 
-public class IntroActivity extends AppCompatActivity {
+public class IntroActivity extends AppCompatActivity implements View.OnClickListener{
 
     private Button btn;
     private CompositeDisposable compositeDisposable = new CompositeDisposable();
@@ -31,19 +31,21 @@ public class IntroActivity extends AppCompatActivity {
         prefs = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
 
         btn = findViewById(R.id.intro_button);
-        btn.setOnClickListener(new View.OnClickListener() {
+        btn.setOnClickListener(this);
+           /*     new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 prefs.edit().putBoolean(IS_FIRST_TIME_LAUNCH, true).apply();
+                System.out.println("In onClick!");
                 startSecondActivity();
             }
-        });
+        });*/
 
 
         if (needToShowIntro()) {
             setContentView(R.layout.activity_intro);
             Disposable disposable = Completable.complete()
-                    .delay(10, TimeUnit.SECONDS)
+                    .delay(1, TimeUnit.SECONDS)
                     .subscribe(this::startSecondActivity);
             this.compositeDisposable.add(disposable);
         } else {
@@ -66,5 +68,15 @@ public class IntroActivity extends AppCompatActivity {
         super.onStop();
         this.compositeDisposable.dispose();
     }
+
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == R.id.intro_button) {
+            prefs.edit().putBoolean(IS_FIRST_TIME_LAUNCH, true).apply();
+            System.out.println("In activity onClick");
+            startSecondActivity();
+        }
+    }
+
 
 }
