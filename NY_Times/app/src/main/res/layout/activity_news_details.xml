@@ -4,8 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
 
-    android:id="@+id/activity_news_details_view"
-    tools:context=".NewsDetailActivity"
+    tools:context=".NewsDetailsActivity"
 
     android:layout_width="match_parent"
     android:layout_height="match_parent"

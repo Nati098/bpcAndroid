@@ -22,11 +22,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".NewsDetailActivity"
+            android:name=".NewsDetailsActivity"
             android:parentActivityName=".NewsListActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".NewsDetailActivity" />
+                android:value=".NewsDetailsActivity" />
         </activity>
     </application>
 

@@ -2,6 +2,7 @@ package com.example.mainactivity;
 
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -11,10 +12,11 @@ import android.widget.Toast;
 
 import com.example.mainactivity.data.NewsItemClickedCallback;
 import com.example.mainactivity.data.NewsRecyclerAdapter;
+import com.example.mainactivity.data.database.NewsConverter;
 import com.example.mainactivity.data.network.State;
 import com.example.mainactivity.data.network.RestApi;
 import com.example.mainactivity.data.network.dto.NewsDTO;
-import com.example.mainactivity.data.network.dto.NewsResponse;
+import com.example.mainactivity.data.network.NewsResponse;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.io.IOException;
@@ -23,6 +25,8 @@ import java.util.List;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatSpinner;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -39,6 +43,8 @@ public class NewsListActivity extends AppCompatActivity {
     public static final String[] SECTIONS = {"home",  "arts", "automobiles", "books", "business", "fashion", "food", "health",
             "insider", "magazine", "movies", "national", "nyregion", "obituaries", "opinion", "politics", "realestate",
             "science", "sports", "sundayreview", "technology", "theater", "tmagazine", "travel", "upshot", "world"};
+
+    private NewsConverter newsDatabase;
 
     private NewsRecyclerAdapter adapter;
     private RecyclerView recycler;
@@ -81,7 +87,14 @@ public class NewsListActivity extends AppCompatActivity {
         super.onStop();
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
+
     private void setupOnCreate(){
+        this.newsDatabase = new NewsConverter(this.getApplicationContext());
+
         findViews();
         this.toolbar.setTitle(R.string.app_title);
 
@@ -106,8 +119,9 @@ public class NewsListActivity extends AppCompatActivity {
                 new NewsItemClickedCallback<NewsDTO>() {
                     @Override
                     public void onItemClicked(NewsDTO item) {
-                        NewsDetailActivity.start(NewsListActivity.this, item.getSubsection(),
-                                item.getUrl(), item.getTitle(), item.getPublishedDate(), item.getUrl());  // TODO - replace last get_url on get_full_text
+                        NewsDetailsFragment ndf = NewsDetailsFragment.getInstance(item.getSubsection(),
+                                item.getMultimediaUrl(), item.getTitle(), item.getPublishedDate(), item.getUrl());
+                        loadFragment(ndf);  // TODO - replace last get_url on get_full_text
                     }
                 });
 
@@ -173,8 +187,15 @@ public class NewsListActivity extends AppCompatActivity {
                             .getNewsEndpoint().search(section)     // TODO - ?
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(i -> checkResponseAndShowState(i), e -> handleError(e));
+                .subscribe(
+                        i -> checkResponseAndShowState(i),
+                        e -> handleError(e));
         this.compositeDisposable.add(searchDisposable);
+    }
+
+    private void loadFragment(Fragment fragment) {
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.frame_container, fragment).addToBackStack(null).commit();
     }
 
     private void checkResponseAndShowState(@NonNull Response<NewsResponse<List<NewsDTO>>> response){
@@ -202,6 +223,17 @@ public class NewsListActivity extends AppCompatActivity {
         }
 
         // success
+        // then save to db
+        Disposable disposable = newsDatabase.toDatabase(data)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        () -> { Log.d(this.getLocalClassName(), data.toString()); },
+                        e -> { Log.e(this.getLocalClassName(), e.toString()); });
+        compositeDisposable.add(disposable);
+
+
+        // and show
         this.adapter.replaceItems(data);
         showStateView(State.HasData);
 

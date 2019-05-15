@@ -103,22 +103,28 @@ public class NewsRecyclerAdapter extends RecyclerView.Adapter<NewsRecyclerAdapte
         // binds the view holder to its data; replace the contents of a view
         public void bind(Context context, NewsDTO item){
             this.progressBar.setVisibility(View.VISIBLE);
-            Glide.with(context).load(item.getUrl())
-                    .listener(new RequestListener<Drawable>() {
-                        @Override
-                        public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
-                            progressBar.setVisibility(View.GONE);
-                            System.err.println("Fail to load image: ViewHolder, bind");
-                            return false;
-                        }
 
-                        @Override
-                        public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
-                            progressBar.setVisibility(View.GONE);
-                            return false;
-                        }
-                    })
-                    .into(ViewHolder.this.photo);
+            if (item.getUrl() != null) {
+                Glide.with(context).load(item.getUrl())
+                        .listener(new RequestListener<Drawable>() {
+                            @Override
+                            public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                                progressBar.setVisibility(View.GONE);
+                                System.err.println("Fail to load image: ViewHolder, bind");
+                                return false;
+                            }
+
+                            @Override
+                            public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                                progressBar.setVisibility(View.GONE);
+                                return false;
+                            }
+                        })
+                        .into(ViewHolder.this.photo);
+            }
+            else{
+                ViewHolder.this.photo.setImageResource(R.drawable.empty_img);
+            }
 
             this.subsection.setText(item.getSubsection());
             this.title.setText(item.getTitle());

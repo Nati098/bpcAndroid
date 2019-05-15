@@ -1,4 +1,4 @@
-package com.example.mainactivity.data.network.dto;
+package com.example.mainactivity.data.network;
 
 import java.util.List;
 
@@ -12,6 +12,5 @@ public class NewsResponse<T> {
     public T getResults(){
         return this.results;
     }
-
 
 }

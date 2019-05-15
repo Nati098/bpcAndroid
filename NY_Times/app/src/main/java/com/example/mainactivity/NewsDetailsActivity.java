@@ -11,10 +11,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
 
-public class NewsDetailActivity extends AppCompatActivity {
+public class NewsDetailsActivity extends AppCompatActivity {
 
     public static void start(Activity activity, String category, String imgUrl, String title, String publishDdate, String full_text) {
-        Intent intent1 = new Intent(activity, NewsDetailActivity.class);
+        Intent intent1 = new Intent(activity, NewsDetailsActivity.class);
         intent1.putExtra("img_url", imgUrl);
         intent1.putExtra("title", title);
         intent1.putExtra("date", publishDdate);

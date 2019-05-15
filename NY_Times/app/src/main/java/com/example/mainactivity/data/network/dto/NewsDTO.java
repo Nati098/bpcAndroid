@@ -28,6 +28,10 @@ public class NewsDTO {
     private List<MultimediaDTO> multimedia;
 
 
+    public String getSection() {
+        return this.section;
+    }
+
     public String getSubsection() {
         return this.subsection;
     }
@@ -45,8 +49,15 @@ public class NewsDTO {
     }
 
     public String getUrl() {
-        return this.multimedia.get(2).getUrl();
+        return this.url;
     }
 
+    public List<MultimediaDTO> getMultimedia(){ return this.multimedia; }
+
+    public String getMultimediaFormat() { return this.multimedia.get(2).getFormat(); }
+
+    public String getMultimediaUrl() {
+        return this.multimedia.get(2).getUrl();
+    }
 
 }

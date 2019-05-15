@@ -121,8 +121,7 @@ public class AboutActivity extends AppCompatActivity {
         if (! editText1.getText().equals("")){
             Intent intent1 = new Intent(Intent.ACTION_SEND);
 
-            intent1.setData(Uri.parse("mailto:"));
-            intent1.setType("*/*");
+            intent1.setDataAndType(Uri.parse("mailto:"), "*/*");
             intent1.putExtra(Intent.EXTRA_EMAIL, editText1.getText());
 
             startActivity(intent1);
