@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:id="@+id/card_view"
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
+
+    android:padding="@dimen/list_item_padding"
+    android:layout_margin="4dp"
+
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="8dp"
+        android:weightSum="3">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+
+            android:weightSum="6">
+
+            <TextView
+                android:id="@+id/category_text"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_margin="@dimen/objects_list_margin"
+                android:layout_weight="1"
+
+                android:gravity="bottom"
+
+                android:maxLines="1"
+                android:textAllCaps="true"
+                android:textSize="12sp"
+                android:typeface="serif"
+                tools:ignore="NestedWeights"
+
+                tools:text="@tools:sample/first_names" />
+
+            <TextView
+                android:id="@+id/title_text"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_margin="@dimen/objects_list_margin"
+                android:layout_weight="2"
+
+                android:maxLines="3"
+                android:textSize="16sp"
+                android:textStyle="bold"
+
+                tools:text="@tools:sample/last_names" />
+
+            <TextView
+                android:id="@+id/preview_text"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_margin="@dimen/objects_list_margin"
+                android:layout_weight="2"
+
+                android:gravity="center|top"
+                android:maxLines="3"
+                android:textSize="13sp"
+                tools:text="@tools:sample/backgrounds/scenic" />
+
+            <TextView
+                android:id="@+id/date_text"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_margin="@dimen/objects_list_margin"
+                android:layout_weight="1"
+                android:ems="10"
+                android:textSize="12sp"
+                tools:text="@tools:sample/date/ddmmyy" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/news_img"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/news_img_size"
+            android:layout_gravity="center"
+
+            android:layout_margin="8dp"
+
+            android:layout_weight="2"
+            android:scaleType="centerCrop"
+            tools:ignore="ContentDescription"
+
+            tools:src="@tools:sample/backgrounds/scenic" />
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
