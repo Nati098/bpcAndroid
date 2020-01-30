@@ -1,6 +1,7 @@
 package com.example.mainactivity;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 //import com.example.mainactivity.glidemodule.GlideApp;
 
 import com.bumptech.glide.Glide;
+import com.example.mainactivity.debounced.DebouncedClickListener;
 
 import java.util.List;
 
@@ -34,8 +36,10 @@ public class NewsRecyclerAdapter extends RecyclerView.Adapter<NewsRecyclerAdapte
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View v = this.inflater.inflate(R.layout.list_item_news, parent, false);
+        Log.i("DebouncedClickListener", Integer.toHexString(System.identityHashCode(v))+": creating ViewHolder");
         return new ViewHolder(
-                this.inflater.inflate(R.layout.list_item_news, parent, false),
+                v,
                 itemClickedCallback);
     }
 
@@ -75,9 +79,9 @@ public class NewsRecyclerAdapter extends RecyclerView.Adapter<NewsRecyclerAdapte
             this.preview = itemView.findViewById(R.id.preview_text);
             this.publishDdate = itemView.findViewById(R.id.date_text);
 
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
+            itemView.setOnClickListener(new DebouncedClickListener(this){
+
+                public void onItemClick(View v){
                     itemClickedCallback.onItemClicked(item);
                 }
             });
